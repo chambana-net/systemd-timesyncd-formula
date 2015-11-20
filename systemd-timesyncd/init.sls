@@ -6,6 +6,8 @@
     - group: root
     - mode: 644
     - template: jinja
+    - watch_in:
+      - service: systemd-timesyncd
 
 {% if salt['grains.get']('virtual') != 'physical' %}
 /etc/systemd/system/systemd-timesyncd.service.d/virt.conf:
