@@ -11,8 +11,6 @@ timesyncd_conf:
     - group: root
     - mode: 644
     - template: jinja
-    - watch_in:
-      - service: timesyncd_service
     - context:
         timesyncd_config: {{ timesyncd }}
 
@@ -31,5 +29,7 @@ timesyncd_service:
   service.running:
     - name: systemd-timesyncd.service
     - enable: true
+    - onchanges:
+      - file: timesyncd_conf
     - require:
       - file: /etc/systemd/timesyncd.conf
