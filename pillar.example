@@ -1,4 +1,4 @@
-systemd-timesyncd:
+timesyncd:
   timeservers:
     - 0.debian.pool.ntp.org
     - 1.debian.pool.ntp.org

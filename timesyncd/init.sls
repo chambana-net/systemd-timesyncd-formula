@@ -1,33 +1,33 @@
 # -*- coding: utf-8 -*-                                                                                                                                                                                           
 # vim: ft=sls                                                                                                                                                                                                     
                                                                                                                                                                                                                   
-{% from "systemd-timesyncd/map.jinja" import systemd-timesyncd with context %}                                                                                                                                                            
-systemd_timesyncd_conf:
+{% from "timesyncd/map.jinja" import timesyncd with context %}                                                                                                                                                            
+timesyncd_conf:
   file.managed:
     - name: /etc/systemd/timesyncd.conf
-    - source: salt://systemd-timesyncd/files/timesyncd.conf.tmpl
+    - source: salt://timesyncd/files/timesyncd.conf.tmpl
     - template: jinja
     - user: root
     - group: root
     - mode: 644
     - template: jinja
     - watch_in:
-      - service: systemd-timesyncd
+      - service: timesyncd_service
     - context:
-        timesyncd_config: {{ systemd-timesyncd }}
+        timesyncd_config: {{ timesyncd }}
 
 {% if salt['grains.get']('virtual') != 'physical' %}
-systemd_timesyncd_virt:
+timesyncd_virt:
   file.managed:
     - name: /etc/systemd/system/systemd-timesyncd.service.d/virt.conf
-    - source: salt://systemd-timesyncd/files/virt.conf
+    - source: salt://timesyncd/files/virt.conf
     - user: root
     - group: root
     - mode: 644
     - makedirs: true
 {% endif %}
 
-systemd_timesyncd_service:
+timesyncd_service:
   service.running:
     - enable: true
     - require:

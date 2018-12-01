@@ -1,0 +1,15 @@
+{# vi: set ft=jinja: #}
+
+{% import_yaml "timesyncd/defaults.yaml" as defaults %}
+{% import_yaml "timesyncd/osfamilymap.yaml" as osfamilymap %}
+
+{# merge OS-specific defaults #}
+{% set osfamily = salt['grains.filter_by'](osfamilymap, grain='os_family', merge=defaults.timesyncd) or {} %}
+{% do defaults.timesyncd.update(osfamily) %}
+
+{# merge overrides #}
+{% set lookup = salt['pillar.get']('timesyncd:lookup', default={}, merge=True) %}
+{% do defaults.timesyncd.update(lookup) %}
+
+{# merge all #}
+{% set timesyncd = salt['pillar.get']('timesyncd', default=defaults['timesyncd'], merge=true) %}
