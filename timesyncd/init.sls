@@ -29,6 +29,7 @@ timesyncd_virt:
 
 timesyncd_service:
   service.running:
+    - name: systemd-timesyncd.service
     - enable: true
     - require:
       - file: /etc/systemd/timesyncd.conf
