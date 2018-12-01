@@ -1,6 +1,7 @@
 {# vi: set ft=jinja: #}
 
 {% set defaults = dict() %}
+{% do defaults['timesyncd'] = dict() %}
 {% import_yaml "timesyncd/osfamilymap.yaml" as osfamilymap %}
 
 {# merge OS-specific defaults #}
