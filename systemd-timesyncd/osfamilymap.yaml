@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+
+Arch:
+    fallback: 
+      - 0.arch.pool.ntp.org
+      - 1.arch.pool.ntp.org
+      - 2.arch.pool.ntp.org
+      - 3.arch.pool.ntp.org
+Debian:
+    fallback: 
+      - 0.debian.pool.ntp.org
+      - 1.debian.pool.ntp.org
+      - 2.debian.pool.ntp.org
+      - 3.debian.pool.ntp.org

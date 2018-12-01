@@ -1,0 +1,24 @@
+{# vi: set ft=jinja: #}
+{% macro timeserver_serializer(data) %}
+{% if data -%}
+{% for key, values in data.items() -%}
+{{ key }}: {{ values|join(' ') }}
+{% endfor %}
+{% endif %}
+{% endmacro %}
+
+# File managed by Salt at <{{ source }}>.
+# Your changes will be overwritten.
+
+[Time]
+NTP = {{ timeserver_serializer(timesyncd_config.timeservers) }}
+FallbackNTP = {{ timeserver_serializer(timesyncd_config.fallback) }}
+{% if timesyncd_config.root_distance_max_sec -%}
+RootDistanceMaxSec= {{ timesyncd_config.root_distance_max_sec }}
+{% endif -%}
+{% if timesyncd_config.poll_interval_max_sec -%}
+PollIntervalMaxSec= {{ timesyncd_config.poll_interval_max_sec }}
+{% endif -%}
+{% if timesyncd_config.poll_interval_min_sec -%}
+PollIntervalMinSec= {{ timesyncd_config.poll_interval_min_sec }}
+{% endif -%}
