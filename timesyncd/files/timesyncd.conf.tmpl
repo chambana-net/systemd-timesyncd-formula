@@ -9,18 +9,18 @@
 # Your changes will be overwritten.
 
 [Time]
-{% if timesyncd_config.timeservers -%}
+{% if timesyncd_config.timeservers is defined -%}
 NTP = {{ timeserver_serializer(timesyncd_config.timeservers) }}
 {% endif -%}
-{% if timesyncd_config.fallback -%}
+{% if timesyncd_config.fallback is defined -%}
 FallbackNTP = {{ timeserver_serializer(timesyncd_config.fallback) }}
 {% endif -%}
-{% if timesyncd_config.root_distance_max_sec -%}
+{% if timesyncd_config.root_distance_max_sec is defined -%}
 RootDistanceMaxSec= {{ timesyncd_config.root_distance_max_sec }}
 {% endif -%}
-{% if timesyncd_config.poll_interval_max_sec -%}
+{% if timesyncd_config.poll_interval_max_sec is defined -%}
 PollIntervalMaxSec= {{ timesyncd_config.poll_interval_max_sec }}
 {% endif -%}
-{% if timesyncd_config.poll_interval_min_sec -%}
+{% if timesyncd_config.poll_interval_min_sec is defined -%}
 PollIntervalMinSec= {{ timesyncd_config.poll_interval_min_sec }}
 {% endif -%}
