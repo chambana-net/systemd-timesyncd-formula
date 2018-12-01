@@ -10,10 +10,10 @@
 
 [Time]
 {% if timesyncd_config.timeservers is defined -%}
-NTP = {{ timeserver_serializer(timesyncd_config.timeservers) }}
+NTP = {{ timesyncd_config.timeservers|join(' ') }}
 {% endif -%}
 {% if timesyncd_config.fallback is defined -%}
-FallbackNTP = {{ timeserver_serializer(timesyncd_config.fallback) }}
+FallbackNTP = {{ timesyncd_config.fallback|join(' ') }}
 {% endif -%}
 {% if timesyncd_config.root_distance_max_sec is defined -%}
 RootDistanceMaxSec= {{ timesyncd_config.root_distance_max_sec }}
