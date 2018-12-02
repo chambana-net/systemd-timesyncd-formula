@@ -1,7 +1,8 @@
-# -*- coding: utf-8 -*-                                                                                                                                                                                           
-# vim: ft=sls                                                                                                                                                                                                     
-                                                                                                                                                                                                                  
-{% from "timesyncd/map.jinja" import timesyncd with context %}                                                                                                                                                            
+# -*- coding: utf-8 -*-
+# vim: ft=sls
+
+{% from "timesyncd/map.jinja" import timesyncd with context %}
+
 timesyncd_conf:
   file.managed:
     - name: /etc/systemd/timesyncd.conf
